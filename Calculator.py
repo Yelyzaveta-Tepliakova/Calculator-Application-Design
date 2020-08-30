@@ -22,6 +22,14 @@ class Calculator():
         self.task = ""
 
 
+    def Calculation(self, text):
+        """
+        The method puts digits and mathematical operators into
+        Entry Widget and makes all mathematical operations that
+        can be used in calculator
+        """
+
+
     def SetTextInput(self, text):
         """
         The function puts digits and mathematical operators into
