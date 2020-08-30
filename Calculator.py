@@ -1,16 +1,16 @@
-"""
-The program written on 29.08.2019 by Yelyzaveta Tepliakova.
-Python version is 3.8.
-The program makes calculator using GUI.
-Calculator is used to perform basic arithmetic calculations.
-It has 20 buttons: digits and mathematical operators
-(0-9, =, +, -, *, /, ., √, ^2, AC, C)
-"""
+#####################################################################
+## Description:    The program makes GUI for calculator that does
+##                 basic arithmetic calculations.
+#####################################################################
+## Author:         Yelyzaveta Tepliakova
+## Python version: 3.8.
+## Date:           09.01.2020
+#####################################################################
 
 import tkinter as tk
 
-class Calculator():
 
+class Calculator():
 
     def __init__(self):
         """
@@ -20,8 +20,6 @@ class Calculator():
         self.root.title("Calculator")
         self.root.geometry('200x400')
         self.task = ""
-
-
 
 
     def SetTextInput(self, text):
@@ -43,24 +41,12 @@ class Calculator():
             # checks if symbols in Entry Widget are digits and
             # appropriate mathematical operators
 
-
-
-
-
-
-
             if text == "√":   # counts nth root of a number
 
                 self.task = eval(self.task + "**0.5")
                 self.TextEntry.delete(1.0, tk.END)
                 self.task = str(self.task)
                 self.TextEntry.insert(2.0, self.task)
-
-
-
-
-
-
 
             elif text == "^2":   # counts square of a number
 
@@ -69,30 +55,15 @@ class Calculator():
                 self.task = str(self.task)
                 self.TextEntry.insert(2.0, self.task)
 
-
-
-
-
-
-
             elif text == "AC":   # all clear (clears the whole task)
 
                 self.task = ""
-
-
-
-
-
-
 
             elif text == "C":   # clears last symbol
 
                 if len(self.task) == 0:   # clears the whole task if there are
                                           # no symbols in task
                     self.task = ""
-
-
-
 
                 elif len(self.task) != 0:   # clears last symbol in the task
                                             # if task is not empty
@@ -101,7 +72,6 @@ class Calculator():
 
                     self.TextEntry.delete(1.0, tk.END)
                     self.task = self.task[:-1]
-
 
                     if "+" or "-" or "*" or "/" in self.task:
                         # while clearing last symbol makes mathematical
@@ -112,12 +82,6 @@ class Calculator():
                         self.task = "\n/\n".join(self.task.rsplit("/", 100))
                         self.TextEntry.insert(1.0, self.task)
 
-
-
-
-
-
-
             else:   # counts if symbols are digits, "+", "-", "*", "/", ".", "="
 
                 if len(self.task) == 1 and self.task[0] == "0":
@@ -127,7 +91,6 @@ class Calculator():
                     if text == "0":   # does not allow to put zero if
                                       # the first digit in task is zero
                         pass
-
 
                     elif text == ".":   # allows to put point after first zero
                                         # which means decimal fraction
@@ -141,14 +104,9 @@ class Calculator():
                                 self.task = str(eval(self.task[:-1]))
                                 self.TextEntry.insert(2.0, self.task)
 
-
                     else:   # counts if zeros are part of number
                         self.TextEntry.insert(300.0, text)
                         self.task += text
-
-
-
-
 
                 elif "\n+\n0." in self.task or "\n-\n0." in self.task\
                         or "\n*\n0." in self.task or "\n/\n0." in self.task:
@@ -163,10 +121,6 @@ class Calculator():
                             self.task = self.task.replace("\n", "")
                             self.task = str(eval(self.task[:-1]))
                             self.TextEntry.insert(2.0, self.task)
-
-
-
-
 
                 elif "\n+\n0" in self.task or "\n-\n0" in self.task\
                         or "\n*\n0" in self.task or "\n/\n0" in self.task:
@@ -185,14 +139,9 @@ class Calculator():
                                 self.task = str(eval(self.task[:-1]))
                                 self.TextEntry.insert(2.0, self.task)
 
-
                     else:   # does not allow to put any digits after zero
                             # if it is not decimal fraction
                         pass
-
-
-
-
 
                 else:   # puts digits, mathematical operator and point
                     if text == "\n+\n" or text == "\n-\n" \
@@ -247,7 +196,6 @@ class Calculator():
                             #         self.task = str(eval(self.task[:-1]))
                             #         self.TextEntry.insert(2.0, self.task)
 
-
                     else:   #allows to put digits in task
                         self.TextEntry.insert(300.0, text)
                         self.task += text
@@ -258,8 +206,6 @@ class Calculator():
                                 self.task = self.task.replace("\n", "")
                                 self.task = str(eval(self.task[:-1]))
                                 self.TextEntry.insert(2.0, self.task)
-
-
 
 
     def InitCalculator(self):
@@ -275,18 +221,11 @@ class Calculator():
                                                           # from keyboard
         self.TextEntry.pack()
 
-
-
-
         button_zero = tk.Button(self.root, text="0", bg="black",
                                                      fg="white",
                                                      font="50",
                                 command=lambda: self.SetTextInput("0"))
         button_zero.place(x = 0,y = 350, height = 50, width = 50)
-
-
-
-
 
         button_one = tk.Button(self.root, text="1", bg="black",
                                                     fg="white",
@@ -294,19 +233,11 @@ class Calculator():
                                command=lambda: self.SetTextInput("1"))
         button_one.place(x=0, y=300, height=50, width=50)
 
-
-
-
-
         button_two = tk.Button(self.root, text="2", bg="black",
                                                     fg="white",
                                                     font='50',
                                command=lambda: self.SetTextInput("2"))
         button_two.place(x=50, y=300, height=50, width=50)
-
-
-
-
 
         button_three = tk.Button(self.root, text='3', bg="black",
                                                       fg="white",
@@ -314,19 +245,11 @@ class Calculator():
                                  command=lambda: self.SetTextInput("3"))
         button_three.place(x=100, y=300, height=50, width=50)
 
-
-
-
-
         button_four = tk.Button(self.root, text='4', bg="black",
                                                      fg="white",
                                                      font='50',
                                 command=lambda: self.SetTextInput("4"))
         button_four.place(x=0, y=250, height=50, width=50)
-
-
-
-
 
         button_five = tk.Button(self.root, text='5', bg="black",
                                                      fg="white",
@@ -334,19 +257,11 @@ class Calculator():
                                 command=lambda: self.SetTextInput("5"))
         button_five.place(x=50, y=250, height=50, width=50)
 
-
-
-
-
         button_six = tk.Button(self.root, text='6', bg="black",
                                                     fg="white",
                                                     font='50',
                                command=lambda: self.SetTextInput("6"))
         button_six.place(x=100, y=250, height=50, width=50)
-
-
-
-
 
         button_seven = tk.Button(self.root, text='7', bg="black",
                                                       fg="white",
@@ -354,19 +269,11 @@ class Calculator():
                                  command=lambda: self.SetTextInput("7"))
         button_seven.place(x=0, y=200, height=50, width=50)
 
-
-
-
-
         button_eight = tk.Button(self.root, text='8', bg="black",
                                                       fg="white",
                                                       font='50',
                                  command=lambda: self.SetTextInput("8"))
         button_eight.place(x=50, y=200, height=50, width=50)
-
-
-
-
 
         button_nine = tk.Button(self.root, text='9', bg="black",
                                                      fg="white",
@@ -374,19 +281,11 @@ class Calculator():
                                 command=lambda: self.SetTextInput("9"))
         button_nine.place(x=100, y=200, height=50, width=50)
 
-
-
-
-
         button_point = tk.Button(self.root, text='.', bg="black",
                                                       fg="white",
                                                       font='50',
                                  command=lambda: self.SetTextInput("."))
         button_point.place(x=50, y=350, height=50, width=50)
-
-
-
-
 
         button_addition = tk.Button(self.root, text='+', bg="orange",
                                                          fg="black",
@@ -394,19 +293,11 @@ class Calculator():
                                     command=lambda: self.SetTextInput("\n+\n"))
         button_addition.place(x=150, y=200, height=50, width=50)
 
-
-
-
-
         button_subtraction = tk.Button(self.root, text = '-', bg="orange",
                                                               fg="black",
                                                               font='50',
                                 command=lambda:self.SetTextInput("\n-\n"))
         button_subtraction.place(x=150, y=250, height=50, width=50)
-
-
-
-
 
         button_division = tk.Button(self.root, text = '/', bg="orange",
                                                            fg="black",
@@ -415,18 +306,11 @@ class Calculator():
         button_division.place(x=150, y=350, height=50, width=50)
 
 
-
-
-
         button_multiplication = tk.Button(self.root, text = '*', bg="orange",
                                                                  fg="black",
                                                                  font='50',
                                    command=lambda:self.SetTextInput("\n*\n"))
         button_multiplication.place(x=150, y=300, height=50, width=50)
-
-
-
-
 
         button_square_root = tk.Button(self.root, text = '√', bg="orange",
                                                               fg="black",
@@ -434,29 +318,17 @@ class Calculator():
                                     command = lambda: self.SetTextInput("√"))
         button_square_root.place(x=100, y=150, height=50, width=50)
 
-
-
-
-
         button_square = tk.Button(self.root, text = '^2', bg="orange",
                                                           fg="black",
                                                           font='50',
                                   command = lambda: self.SetTextInput("^2"))
         button_square.place(x=150, y=150, height=50, width=50)
 
-
-
-
-
         button_equals = tk.Button(self.root, text = '=', bg="black",
                                                          fg="white",
                                                          font='50',
                                  command=lambda: self.SetTextInput("="))
         button_equals.place(x=100, y=350, height=50, width=50)
-
-
-
-
 
         button_delete_all = tk.Button(self.root, text = 'AC', bg="orange",
                                                               fg="black",
@@ -465,19 +337,11 @@ class Calculator():
                                      self.TextEntry.delete(1.0, tk.END)))
         button_delete_all.place(x=0, y=150, height=50, width=50)
 
-
-
-
-
         button_delete = tk.Button(self.root, text = 'C', bg="orange",
                                                          fg="black",
                                                          font='50',
                                   command = lambda: self.SetTextInput("C"))
         button_delete.place(x=50, y=150, height=50, width=50)
-
-
-
-
 
 
 if __name__ == "__main__":
