@@ -8,8 +8,7 @@
 #####################################################################
 
 import tkinter as tk
-
-
+print(2222)
 class Calculator():
 
     def __init__(self):
@@ -20,6 +19,14 @@ class Calculator():
         self.root.title("Calculator")
         self.root.geometry('200x400')
         self.task = ""
+
+
+    def Calculation(self, text):
+        """
+        The method puts digits and mathematical operators into
+        Entry Widget and makes all mathematical operations that
+        can be used in calculator
+        """
 
 
     def SetTextInput(self, text):
