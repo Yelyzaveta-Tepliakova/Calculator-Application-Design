@@ -6,7 +6,7 @@
 ## Python version: 3.8.
 ## Date:           09.01.2020
 #####################################################################
-
+print("test print")
 import tkinter as tk
 
 class Calculator():
