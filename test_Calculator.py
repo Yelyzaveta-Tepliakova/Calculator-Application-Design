@@ -31,7 +31,7 @@ class TestCalculator(unittest.TestCase):   # tests Calculation method
         main.Calculation("=")
         actual_result = main.formula
         expected_result = "-273"
-        self.assertEquals(actual_result, expected_result)
+        self.assertEqual(actual_result, expected_result)
 
 
     def test_2(self):   # tests multiplying by zero
@@ -46,7 +46,7 @@ class TestCalculator(unittest.TestCase):   # tests Calculation method
         main.Calculation("=")
         actual_result = main.formula
         expected_result = "22.59"
-        self.assertEquals(actual_result, expected_result)
+        self.assertEqual(actual_result, expected_result)
 
 
     def test_3(self):   # tests decimal fraction's calculating
@@ -67,7 +67,7 @@ class TestCalculator(unittest.TestCase):   # tests Calculation method
         main.Calculation("=")
         actual_result = main.formula
         expected_result = "173.16363636363636"
-        self.assertEquals(actual_result, expected_result)
+        self.assertEqual(actual_result, expected_result)
 
 
     def test_4(self):   # tests square of a number
@@ -81,7 +81,7 @@ class TestCalculator(unittest.TestCase):   # tests Calculation method
         main.Calculation("=")
         actual_result = main.formula
         expected_result = "153906"
-        self.assertEquals(actual_result, expected_result)
+        self.assertEqual(actual_result, expected_result)
 
 
     def test_5(self):   # tests nth root of a number
@@ -97,7 +97,7 @@ class TestCalculator(unittest.TestCase):   # tests Calculation method
         main.Calculation("=")
         actual_result = main.formula
         expected_result = "46.0"
-        self.assertEquals(actual_result, expected_result)
+        self.assertEqual(actual_result, expected_result)
 
 
     def test_6(self):   # tests changing of mathematical
@@ -110,13 +110,16 @@ class TestCalculator(unittest.TestCase):   # tests Calculation method
         main.Calculation("\n+\n")
         main.Calculation("\n*\n")
         main.Calculation("2")
-        main.Calculation("\n-\n")
+        main.Calculation("\n*\n")
         main.Calculation("\n/\n")
         main.Calculation("4")
+        main.Calculation("\n/\n")
+        main.Calculation("\n/\n")
+        main.Calculation("1")
         main.Calculation("=")
         actual_result = main.formula
         expected_result = "304.5"
-        self.assertEquals(actual_result, expected_result)
+        self.assertEqual(actual_result, expected_result)
 
 
     def test_7(self):   # tests clearing last symbol
@@ -139,7 +142,7 @@ class TestCalculator(unittest.TestCase):   # tests Calculation method
         main.Calculation("=")
         actual_result = main.formula
         expected_result = "-869.9"
-        self.assertEquals(actual_result, expected_result)
+        self.assertEqual(actual_result, expected_result)
 
 
     def test_8(self):   # tests equals sign during calculating
@@ -164,7 +167,7 @@ class TestCalculator(unittest.TestCase):   # tests Calculation method
         main.Calculation("=")
         actual_result = main.formula
         expected_result = "-22.22"
-        self.assertEquals(actual_result, expected_result)
+        self.assertEqual(actual_result, expected_result)
 
 
     def test_9(self):  # tests ability to put not mathematical
@@ -176,7 +179,7 @@ class TestCalculator(unittest.TestCase):   # tests Calculation method
         main.Calculation("=")
         actual_result = main.formula
         expected_result = ""
-        self.assertEquals(actual_result, expected_result)
+        self.assertEqual(actual_result, expected_result)
 
 
     def test__10(self):  # tests ability to put nth root of a number
@@ -192,7 +195,7 @@ class TestCalculator(unittest.TestCase):   # tests Calculation method
         main.Calculation("=")
         actual_result = main.formula
         expected_result = "15"
-        self.assertEquals(actual_result, expected_result)
+        self.assertEqual(actual_result, expected_result)
 
 
     def test__11(self):   # tests ability to take nth root
@@ -203,7 +206,7 @@ class TestCalculator(unittest.TestCase):   # tests Calculation method
         main.Calculation("√")
         actual_result = main.formula
         expected_result = "-9"
-        self.assertEquals(actual_result, expected_result)
+        self.assertEqual(actual_result, expected_result)
 
 
     def test__12(self):   # tests clearing everything by AC
@@ -214,20 +217,15 @@ class TestCalculator(unittest.TestCase):   # tests Calculation method
         main.Calculation("AC")
         actual_result = main.formula
         expected_result = ""
-        self.assertEquals(actual_result, expected_result)
+        self.assertEqual(actual_result, expected_result)
 
 
     def test__13(self):   # tests clearing everything by C
         main.Calculation("AC")
-        main.Calculation("9")
-        main.Calculation("\n-\n")
-        main.Calculation("7")
-        main.Calculation("C")
-        main.Calculation("C")
         main.Calculation("C")
         actual_result = main.formula
         expected_result = ""
-        self.assertEquals(actual_result, expected_result)
+        self.assertEqual(actual_result, expected_result)
 
 
     def test__14(self):   # tests ability to put digits after
@@ -240,7 +238,45 @@ class TestCalculator(unittest.TestCase):   # tests Calculation method
         main.Calculation("78")
         actual_result = main.formula
         expected_result = "0.78"
-        self.assertEquals(actual_result, expected_result)
+        self.assertEqual(actual_result, expected_result)
+
+
+    def test__15(self):   # tests ability to square
+                          # a negative number
+        main.Calculation("AC")
+        main.Calculation("\n-\n")
+        main.Calculation("7")
+        main.Calculation("^2")
+        actual_result = main.formula
+        expected_result = "49"
+        self.assertEqual(actual_result, expected_result)
+
+
+    def test__16(self):   # tests clearing last symbol so
+                          # that the whole formula is empty
+        main.Calculation("C")
+        main.Calculation("C")
+        actual_result = main.formula
+        expected_result = ""
+        self.assertEqual(actual_result, expected_result)
+
+
+    def test__17(self):   # tests ability to put mathematical
+                          # operators after zero
+        main.Calculation("0")
+        main.Calculation("\n+\n")
+        actual_result = main.formula
+        expected_result = "0\n+\n"
+        self.assertEqual(actual_result, expected_result)
+
+    def test__18(self):   # tests ability to put zero after
+                          # zero
+        main.Calculation("AC")
+        main.Calculation("0")
+        main.Calculation("0")
+        actual_result = main.formula
+        expected_result = "0"
+        self.assertEqual(actual_result, expected_result)
 
 if __name__ == '__main__':
     main = Calculator()
