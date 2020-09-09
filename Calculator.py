@@ -13,12 +13,11 @@ class Calculator():
 
     def __init__(self):
         """
-        The function sets calculator's size and title
+        The method sets calculator's size and title
         """
         self.root = tk.Tk()
         self.root.title("Calculator")
         self.root.geometry('200x520')
-        self.task = ""
         self.widget_formula = ""
         self.formula = ""
         self.root.resizable(False, False)
@@ -124,7 +123,7 @@ class Calculator():
                                     # checks if there is zero at
                                     # the begining of formula
                     if text == "\n+\n" or text == "\n-\n" \
-                        or text == "\n*\n0" or text == "\n/\n0":
+                        or text == "\n*\n" or text == "\n/\n":
                         self.formula += text
 
                     if text == "0":   # does not allow to put zero
@@ -136,15 +135,6 @@ class Calculator():
                                         # first zero which means
                                         # decimal fraction
                         self.formula += text
-
-                        if text == "=":
-                            if "\n" in self.formula:
-                                self.formula = \
-                                    self.formula.\
-                                        replace("\n","")
-                                self.formula = \
-                                    str(eval(self.
-                                             formula[:-1]))
 
                 else:   # puts digits, mathematical operator
                         # and point
@@ -172,16 +162,14 @@ class Calculator():
                                 self.formula[-2] == "*":
                             # does not allow to put mathematical
                             # operator after "*"
-                            self.formula = \
-                                self.formula[:-3]
+                            self.formula = self.formula[:-3]
                             self.formula += text
 
                         elif len(self.formula) > 2 and \
                                 self.formula[-2] == "/":
                             # does not allow to put mathematical
                             # operator after "/"
-                            self.formula = \
-                                self.formula[:-3]
+                            self.formula = self.formula[:-3]
                             self.formula += text
 
                         else:
@@ -268,7 +256,7 @@ class Calculator():
                                     # checks if there is zero at
                                     # the begining of widget_formula
                     if text == "\n+\n" or text == "\n-\n" \
-                        or text == "\n*\n0" or text == "\n/\n0":
+                        or text == "\n*\n" or text == "\n/\n":
                         self.TextEntry.insert(300.0, text)
                         self.widget_formula += text
 
@@ -282,12 +270,6 @@ class Calculator():
                                         # decimal fraction
                         self.TextEntry.insert(300.0, text)
                         self.widget_formula += text
-
-                        if text == "=":
-                            if "\n" in self.widget_formula:
-                                self.TextEntry.delete(1.0, tk.END)
-                                self.TextEntry.insert(2.0, self.
-                                                      formula)
 
                 else:   # puts digits, mathematical operator
                         # and point
@@ -344,8 +326,7 @@ class Calculator():
                         if text == "=":
                             if "\n" in self.widget_formula:
                                 self.TextEntry.delete(1.0, tk.END)
-                                self.TextEntry.insert(2.0,
-                                                      self.
+                                self.TextEntry.insert(2.0, self.
                                                       formula)
 
 
@@ -354,6 +335,7 @@ class Calculator():
         The function sets Entry Widget's size; also sets buttons'
         size, location, design and functions
         """
+
         self.TextEntry = tk.Text(self.root, height=11,
                                             width=30,
                                             font='50')
@@ -527,4 +509,7 @@ if __name__ == "__main__":
     main = Calculator()
     main.InitCalculator()
     main.root.mainloop()
+
+
+
 
